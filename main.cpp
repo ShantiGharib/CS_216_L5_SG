@@ -48,11 +48,15 @@ private:
 
     bool ValidateType(const std::string &creatureType);
 
+    void CopyFunction(const Creature &source);
+
 
 public:
     
     Creature();
+    
     Creature(const Creature &source);
+    void operator=(const Creature &source);
     
     Creature(const std::string &creatureName, const std::string &creatureType);
     Creature(const std::string &creatureName, const std::string &creatureType, int creatureHealth, int creatureStrength);
@@ -105,11 +109,14 @@ private:
 
     void AssignSortPointers();
 
+    void CopyFunction(const Army &source);
+
 public:
 
     
     Army();
     Army(const Army &source);
+    void operator=(const Army &source);
     
     ~Army();
 
@@ -491,6 +498,31 @@ Army::Army() {
 
 Army::Army(const Army &source) {
 
+    CopyFunction(source);
+
+}
+
+
+void Army::operator=(const Army &source) {
+
+    CopyFunction(source);
+
+}
+
+
+Army::~Army() {
+    
+    AssignSortPointers();
+
+    name = NAME_DEFAULT;
+    maxSize = MAX_SIZE_DEFAULT;
+    usedSize = 0;
+
+}
+
+
+void Army::CopyFunction(const Army &source) {
+
     AssignSortPointers();
     
     name = source.name;
@@ -501,16 +533,6 @@ Army::Army(const Army &source) {
         creatures[i] = source.creatures[i];
     
     }
-
-}
-
-
-
-Army::~Army() {
-
-    name = NAME_DEFAULT;
-    maxSize = MAX_SIZE_DEFAULT;
-    usedSize = 0;
 
 }
 
@@ -836,28 +858,30 @@ Creature::Creature() {}
 
 Creature::Creature(const std::string &creatureName, const std::string &creatureType) {
 
-    
     static constexpr const int RANGE{51}, MIN_VAL{50};
     
     SetCreature(creatureName, creatureType, MIN_VAL + (rand() % RANGE), MIN_VAL + (rand() % RANGE));
-
 
 }
 
 
 Creature::Creature(const std::string &creatureName, const std::string &creatureType, int creatureStrength, int creatureHealth) {
-    
    
     SetCreature(creatureName, creatureType, creatureStrength, creatureHealth);
-
 
 }
 
 
 Creature::Creature(const Creature &source) {
 
+    CopyFunction(source);
 
-    SetCreature(source.GetName(), source.GetType(), source.GetMaxHealth(), source.GetStrength());
+}
+
+
+void Creature::operator=(const Creature &source) {
+
+    CopyFunction(source);
 
 
 }
@@ -867,6 +891,13 @@ Creature::~Creature() {
     
     
     SetCreature(NAME_DEFAULT, TYPE_DEFAULT, STRENGTH_DEFAULT, HEALTH_DEFAULT);
+
+}
+
+
+void Creature::CopyFunction(const Creature &source) {
+
+    SetCreature(source.GetName(), source.GetType(), source.GetMaxHealth(), source.GetStrength());
 
 }
 
@@ -1153,6 +1184,7 @@ void DisplayMainMenu() {
 
 
 }
+
 
 void DisplaySortSubMenu() {
 
