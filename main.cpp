@@ -1205,9 +1205,11 @@ void DisplaySortSubMenu() {
 
 
 
-//
+//Testcases
 
-
+//TestCase1: Using custom names and size
+//Output:
+// 
 //  Options:
 //          1. Load Game
 //          2. Quit
@@ -1303,9 +1305,12 @@ void DisplaySortSubMenu() {
 //  | Frostbane       | MACARA          |         96 |               0 |         85 |
 //  | Pyrestalker     | BAHAMUT         |         71 |               0 |         76 |
 //  
-//  
-//  
-//  
+
+
+
+//TestCase2: Using Default name and size 
+//Output:
+// 
 //  Options:
 //          1. Load Game
 //          2. Quit
@@ -1403,8 +1408,54 @@ void DisplaySortSubMenu() {
 //  | Nightbane       | MACARA          |         51 |               0 |         64 |
 //  
 //  
+
+
+
+
+//TestCase3: Entering invalid sizes
+//Output:
+// 
+//  Options:
+//          1. Load Game
+//          2. Quit
 //  
+//  1
 //  
+//  For each army, do you wish to modify their names and size
+//  1. Yes
+//  2. No
+//  
+//  1
+//  
+//  Enter Army 1 Name:
+//  
+//  Warriors
+//  
+//  Enter Army 2 Name:
+//  
+//  Protectors
+//  
+//  Enter the size of both armies(Max: 8):
+//  
+//  9
+//  
+//  Enter the size of both armies(Max: 8):
+//
+//  -1
+//  
+//  Enter the size of both armies(Max: 8):
+//  
+//  0
+//  
+//  Enter the size of both armies(Max: 8):
+//  
+//  1
+//
+
+
+//TestCase4: Quit
+//Output:
+// 
 //  Options:
 //          1. Load Game
 //          2. Quit
